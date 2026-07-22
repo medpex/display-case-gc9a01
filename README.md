@@ -21,8 +21,8 @@ Display-Case-GC9A01/
 ├── 3MF/CASE-FINAL-alle-teile.3mf # all parts in one file
 ├── STEP/CASE-FINAL.step          # parametric CAD (Fusion import)
 ├── Firmware/
-│   ├── esp32_clock/              # Mega Clock (analog, WiFi/NTP time)
-│   └── esp32_starfield/          # Warp starfield demo
+│   ├── esp32_hud/                # GC9A01 HUD (clock/weather/sun/date, WiFi portal)
+│   └── esp32_starfield/          # Warp starfield demo (no WiFi)
 ├── docs/                         # GitHub Pages web flasher + wiring diagram
 └── BOM.md                        # bill of materials
 ```
@@ -47,33 +47,46 @@ Two sketches are included. Two ways to flash:
 ### 1. Web flasher (easiest — no software)
 
 Open **<https://medpex.github.io/display-case-gc9a01/>** in Chrome or Edge on a
-desktop, plug the ESP32-C3 in via USB-C, and click **Flash Clock** or
+desktop, plug the ESP32-C3 in via USB-C, and click **Flash HUD** or
 **Flash Starfield**. That's it.
 
-- **Mega Clock** — smooth analog clock. On first boot it opens a WiFi setup
-  hotspot named **`MegaClock-Setup`**; connect to it, pick your network, and the
-  clock syncs the time via NTP (Europe/Berlin, incl. DST). No WiFi configured →
-  it falls back to an offline clock. No cloud, no account.
-- **Warp Starfield** — flicker-free warp-speed animation, runs instantly.
+- **GC9A01 HUD** — rotating info display: clock, weather, daylight/sun arc and date,
+  with a short random animation show once per hour. WiFi and location are set up in
+  the browser on first boot (see below). No cloud, no account, no telemetry.
+- **Warp Starfield** — flicker-free warp-speed animation, runs instantly, no WiFi.
+
+#### HUD first-time setup
+
+On first boot the HUD opens a WiFi hotspot **`GC9A01-HUD-Setup`**. Connect a
+phone/laptop to it; a captive portal appears where you:
+
+1. select your home WiFi and enter the password;
+2. optionally set **City** (display label), **Latitude**, **Longitude** and
+   **Timezone** (POSIX, e.g. `CET-1CEST,M3.5.0,M10.5.0/3`) for weather and the clock.
+
+Settings are saved on the device (NVS). Time comes from NTP, weather from
+[Open-Meteo](https://open-meteo.com) (no API key). Defaults to Berlin if you skip the
+location fields. To change WiFi/location later, flash again — an erase re-opens the portal.
 
 ### 2. Self-compile (arduino-cli)
 
-Requires the `esp32:esp32` core ≥ 3.3.7 and the libraries
-`Adafruit GFX Library`, `Adafruit GC9A01A`, and `WiFiManager` (tzapu).
-Important: **`CDCOnBoot=cdc`** (otherwise no serial / auto-upload on the C3 Super Mini).
+Requires the `esp32:esp32` core ≥ 3.3.7. Important: **`CDCOnBoot=cdc`** (otherwise no
+serial / auto-upload on the C3 Super Mini).
 
 ```bash
-# Clock (compile-time epoch is only a fallback; NTP is preferred)
+# HUD — libs: "GFX Library for Arduino", ArduinoJson, WiFiManager (tzapu)
 arduino-cli compile --upload -p /dev/cu.usbmodemXXXX \
-  --fqbn "esp32:esp32:esp32c3:CDCOnBoot=cdc,FlashSize=4M" \
-  --build-property "compiler.cpp.extra_flags=-DBUILD_EPOCH=$(date +%s)UL" \
-  Firmware/esp32_clock
+  --fqbn "esp32:esp32:esp32c3:CDCOnBoot=cdc,FlashSize=4M,PartitionScheme=huge_app" \
+  Firmware/esp32_hud
 
-# Starfield
+# Starfield — libs: "Adafruit GFX Library", "Adafruit GC9A01A"
 arduino-cli compile --upload -p /dev/cu.usbmodemXXXX \
   --fqbn "esp32:esp32:esp32c3:CDCOnBoot=cdc,FlashSize=4M" \
   Firmware/esp32_starfield
 ```
+
+> Default location can also be changed in `Firmware/esp32_hud/esp32_hud.ino`
+> (`DEF_CITY` / `DEF_LAT` / `DEF_LON` / `DEF_TZ`) before compiling.
 
 ## Print settings
 

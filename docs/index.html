@@ -61,15 +61,15 @@
 
   <div class="cards">
     <div class="card">
-      <h3>🕐 Mega Clock</h3>
-      <p>Smooth analog clock. Sets time over WiFi (NTP) — a setup hotspot opens on first boot.</p>
-      <esp-web-install-button manifest="firmware/clock/manifest.json">
-        <button slot="activate">Flash Clock</button>
+      <h3>🛰️ GC9A01 HUD</h3>
+      <p>Rotating info display: clock, weather, daylight & date — plus a random animation show. Sets up WiFi &amp; location in your browser on first boot.</p>
+      <esp-web-install-button manifest="firmware/hud/manifest.json">
+        <button slot="activate">Flash HUD</button>
       </esp-web-install-button>
     </div>
     <div class="card">
       <h3>🌌 Warp Starfield</h3>
-      <p>Flicker-free warp-speed starfield animation. Runs instantly, no setup needed.</p>
+      <p>Flicker-free warp-speed starfield animation. Runs instantly, no WiFi, no setup.</p>
       <esp-web-install-button manifest="firmware/starfield/manifest.json">
         <button slot="activate">Flash Starfield</button>
       </esp-web-install-button>
@@ -97,12 +97,21 @@
     Wiring diagram: <a href="wiring.svg" target="_blank">wiring.svg</a>
   </p>
 
-  <h2>Clock WiFi setup</h2>
+  <h2>HUD first-time setup</h2>
   <p class="note">
-    On first boot the clock shows <b>“WiFi Setup — join hotspot: MegaClock-Setup”</b>.
-    Connect your phone/laptop to that WiFi network, pick your home WiFi in the captive portal,
-    and the clock syncs the time via NTP. If no WiFi is configured it falls back to an offline
-    clock (compile-time). No cloud, no account.
+    On first boot the HUD shows <b>“WiFi Setup — join hotspot: GC9A01-HUD-Setup”</b>.
+    Connect your phone/laptop to that WiFi network; a captive portal opens where you:
+  </p>
+  <ol class="note">
+    <li>pick your home WiFi and enter the password,</li>
+    <li>optionally set <b>City</b> (display label), <b>Latitude</b>, <b>Longitude</b> and
+        <b>Timezone</b> (POSIX, e.g. <code>CET-1CEST,M3.5.0,M10.5.0/3</code>) for weather &amp; clock.</li>
+  </ol>
+  <p class="note">
+    Settings are stored on the device (flash/NVS). Time comes from NTP, weather from
+    <a href="https://open-meteo.com" target="_blank">Open-Meteo</a> (no API key). No cloud, no account,
+    no telemetry. Defaults to Berlin if you skip the location fields. To change WiFi/location later,
+    just flash again (it re-opens the portal on erase).
   </p>
 
   <footer>

@@ -52,13 +52,16 @@ Testdruck bestätigt.
 → Verkabelungs-Diagramm siehe Bilder.
 
 ### 💻 Firmware — im Browser flashen, keine Software nötig
-Zwei fertige Firmwares (analoge **Uhr** mit WLAN/NTP-Zeit, und **Warp-Starfield**).
-Direkt aus dem Browser flashen (Chrome/Edge, Desktop) — kein Arduino, kein Setup:
+Zwei fertige Firmwares: das **GC9A01 HUD** (rotierend: Uhr · Wetter · Sonne · Datum
++ stündliche Animations-Show) und eine **Warp-Starfield**-Demo. Direkt aus dem
+Browser flashen (Chrome/Edge, Desktop) — kein Arduino, kein Toolchain:
 
 **👉 Web-Flasher: https://medpex.github.io/display-case-gc9a01/**
 
-Die Uhr öffnet beim ersten Start einen WLAN-Hotspot `MegaClock-Setup` zur
-Netzwerk-Eingabe, danach holt sie die Zeit per NTP (kein Cloud-Account).
+**Ersteinrichtung HUD:** Beim 1. Start öffnet das Display den WLAN-Hotspot
+`GC9A01-HUD-Setup`. Damit verbinden → im Portal WLAN wählen und optional Ort
+(Stadt/Breite/Länge) + Zeitzone setzen. Danach: Zeit per NTP, Wetter per Open-Meteo
+(kein API-Key, kein Account, keine Cloud). Ohne Ortsangabe: Default Berlin.
 Quellcode & Doku: https://github.com/medpex/display-case-gc9a01
 
 ### 📄 Lizenz
