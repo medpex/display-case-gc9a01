@@ -100,7 +100,8 @@ Account, keine Cloud, keine Telemetrie.** Ohne Ortsangabe: Default Berlin.
 6. Optional 4× Gummifüße unter den Boden.
 
 #### 📄 Lizenz
-**CC BY 4.0** — frei nutzen, remixen, auch kommerziell. Bitte Namensnennung: *by medpex*.
+**Standard-Digitaldateilizenz** — nur persönliche, nicht-kommerzielle Nutzung.
+Kein Teilen, Remixen, Weiterverbreiten oder kommerzielle Nutzung ohne Genehmigung.
 Quellcode, Firmware & Doku: https://github.com/medpex/display-case-gc9a01
 
 ---
@@ -164,7 +165,8 @@ Open-Meteo — **no API key, no account, no cloud, no telemetry.** Defaults to B
 6. Optionally add 4 rubber feet.
 
 #### 📄 License
-**CC BY 4.0** — use, remix, commercial OK. Attribution: *by medpex*.
+**Standard Digital File License** — personal, non-commercial use only. No sharing,
+remixing, redistribution or commercial use without permission.
 Source, firmware & docs: https://github.com/medpex/display-case-gc9a01
 
 ---

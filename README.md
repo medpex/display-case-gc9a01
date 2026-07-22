@@ -122,7 +122,8 @@ arduino-cli compile --upload -p /dev/cu.usbmodemXXXX \
 
 ## License
 
-- **Hardware / 3D model / docs:** [CC BY 4.0](LICENSE) — use, remix, and share
-  (including commercially); just give credit.
+- **[Standard Digital File License](LICENSE)** (matches the MakerWorld listing) —
+  personal, non-commercial use only. No sharing, remixing, redistribution, hosting
+  or commercial use without permission.
 - Attribution: *Display-Case GC9A01 by medpex*.
 ```
