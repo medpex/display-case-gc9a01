@@ -194,13 +194,13 @@ Source, firmware & docs: https://github.com/medpex/display-case-gc9a01
 ## 7) BILD-CHECKLISTE (Cover + Galerie)
 
 MakerWorld belohnt gute Fotos. Reihenfolge = Cover zuerst.
-- [ ] **Cover:** gedruckter Ständer mit eingebautem Display **an** (z.B. HUD-Uhr), leicht schräg
-- [ ] Display **an** mit einer Demo (Starfield/Plasma sieht auf Fotos stark aus)
-- [ ] 3 Teile zerlegt nebeneinander (Case / Deckel / Klemmring)
-- [ ] Rückseite mit sichtbarem USB-C-Port
-- [ ] **`docs/wiring.png`** (Verkabelungs-Diagramm — schon fertig im Repo)
+- [x] **Web-/App-Cover 4:3:** `docs/img/cover-4x3.png` (1600×1200, fertig)
+- [x] **App-Cover 3:4:** `docs/img/cover-3x4.png` (1200×1600, fertig)
+- [x] Galerie: `gallery-matrix.jpg`, `gallery-clock.jpg`, `gallery-weather.jpg`, `gallery-sun.jpg`, `gallery-wifi-setup.jpg`, `gallery-matrix-angle.jpg` (alle in `docs/img/`)
+- [x] **`docs/wiring.png`** (Verkabelungs-Diagramm)
+- [ ] noch schön: 3 Teile zerlegt nebeneinander (Case / Deckel / Klemmring)
+- [ ] noch schön: Rückseite mit sichtbarem USB-C-Port
 - [ ] optional: Screenshot der Web-Flasher-Seite (zeigt „flash im Browser")
-- [ ] optional: Slicer-Vorschau (zeigt „kein Support")
 
 ---
 

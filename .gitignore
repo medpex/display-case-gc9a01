@@ -16,3 +16,7 @@
 # Editor
 *.swp
 .vscode/
+
+# raw phone photos (kept locally, not in repo)
+/IMG_*.png
+docs/img/work/
