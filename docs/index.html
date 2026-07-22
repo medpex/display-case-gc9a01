@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Display-Case GC9A01 — Web Flasher</title>
+  <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js"></script>
+  <style>
+    :root {
+      --bg: #0b0e14;
+      --card: #141924;
+      --border: #232a39;
+      --fg: #e6e9ef;
+      --muted: #8b94a7;
+      --accent: #5ac8fa;
+      --accent2: #ffb454;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 2rem 1rem 4rem;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at 50% -10%, #1a2130 0%, var(--bg) 60%);
+      color: var(--fg); line-height: 1.55;
+    }
+    main { max-width: 720px; margin: 0 auto; }
+    h1 { font-size: 1.9rem; margin: 0 0 .3rem; }
+    h2 { font-size: 1.15rem; margin: 2.2rem 0 .8rem; }
+    .sub { color: var(--muted); margin: 0 0 2rem; }
+    .cards { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; }
+    @media (max-width: 560px) { .cards { grid-template-columns: 1fr; } }
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.3rem; text-align: center;
+    }
+    .card h3 { margin: .2rem 0 .4rem; font-size: 1.1rem; }
+    .card p { color: var(--muted); font-size: .88rem; margin: 0 0 1rem; min-height: 3.2em; }
+    esp-web-install-button { --esp-tools-button-color: var(--accent); }
+    esp-web-install-button[install-unsupported] { display: none; }
+    .unsupported {
+      display: none; background: #2a1a1a; border: 1px solid #5a2a2a;
+      color: #ff9b9b; border-radius: 10px; padding: .8rem 1rem; font-size: .9rem;
+      margin-top: 1rem;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: .9rem; margin-top: .5rem; }
+    th, td { text-align: left; padding: .45rem .6rem; border-bottom: 1px solid var(--border); }
+    th { color: var(--muted); font-weight: 600; }
+    code { background: #1d2432; padding: .1rem .4rem; border-radius: 5px; font-size: .85em; }
+    a { color: var(--accent); }
+    .note { color: var(--muted); font-size: .85rem; }
+    footer { margin-top: 3rem; color: var(--muted); font-size: .85rem; text-align: center; }
+    .pill { display:inline-block; background:#1d2432; border:1px solid var(--border);
+            border-radius:999px; padding:.15rem .7rem; font-size:.75rem; color:var(--muted); }
+  </style>
+</head>
+<body>
+<main>
+  <span class="pill">ESP32-C3 · GC9A01 240×240</span>
+  <h1>Display-Case GC9A01 — Web Flasher</h1>
+  <p class="sub">Flash the firmware straight from your browser — no Arduino IDE, no toolchain.
+     Plug the ESP32-C3 in via USB-C, click a button, done.</p>
+
+  <div class="cards">
+    <div class="card">
+      <h3>🕐 Mega Clock</h3>
+      <p>Smooth analog clock. Sets time over WiFi (NTP) — a setup hotspot opens on first boot.</p>
+      <esp-web-install-button manifest="firmware/clock/manifest.json">
+        <button slot="activate">Flash Clock</button>
+      </esp-web-install-button>
+    </div>
+    <div class="card">
+      <h3>🌌 Warp Starfield</h3>
+      <p>Flicker-free warp-speed starfield animation. Runs instantly, no setup needed.</p>
+      <esp-web-install-button manifest="firmware/starfield/manifest.json">
+        <button slot="activate">Flash Starfield</button>
+      </esp-web-install-button>
+    </div>
+  </div>
+
+  <div class="unsupported" id="unsupported">
+    Your browser can’t flash devices (no Web Serial API). Use <b>Chrome</b> or <b>Edge</b> on
+    desktop. Safari and Firefox are not supported.
+  </div>
+
+  <h2>Wiring — GC9A01 → ESP32-C3 Super Mini</h2>
+  <table>
+    <tr><th>Display</th><th>ESP32-C3 GPIO</th></tr>
+    <tr><td>VCC</td><td>3V3</td></tr>
+    <tr><td>GND</td><td>GND</td></tr>
+    <tr><td>SCL / SCK</td><td>GPIO4</td></tr>
+    <tr><td>SDA / MOSI</td><td>GPIO6</td></tr>
+    <tr><td>RES / RST</td><td>GPIO5</td></tr>
+    <tr><td>DC</td><td>GPIO7</td></tr>
+    <tr><td>CS</td><td>GPIO10</td></tr>
+    <tr><td>BLK</td><td>3V3 (backlight always on)</td></tr>
+  </table>
+  <p class="note" style="margin-top:.8rem">
+    Wiring diagram: <a href="wiring.svg" target="_blank">wiring.svg</a>
+  </p>
+
+  <h2>Clock WiFi setup</h2>
+  <p class="note">
+    On first boot the clock shows <b>“WiFi Setup — join hotspot: MegaClock-Setup”</b>.
+    Connect your phone/laptop to that WiFi network, pick your home WiFi in the captive portal,
+    and the clock syncs the time via NTP. If no WiFi is configured it falls back to an offline
+    clock (compile-time). No cloud, no account.
+  </p>
+
+  <footer>
+    <a href="https://github.com/medpex/display-case-gc9a01">GitHub repo</a> ·
+    3D model on MakerWorld · CC BY 4.0
+  </footer>
+</main>
+
+<script>
+  // Show the unsupported notice when Web Serial is unavailable.
+  if (!('serial' in navigator)) {
+    document.getElementById('unsupported').style.display = 'block';
+  }
+</script>
+</body>
+</html>

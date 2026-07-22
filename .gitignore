@@ -1,0 +1,18 @@
+# Arduino build artifacts (compiled locally, not tracked)
+/build/
+**/build/
+
+# Prebuilt firmware for the web flasher IS tracked under docs/firmware/
+
+# Tooling / agent state (not part of the project)
+.claude-flow/
+.claude/
+.roo/
+*.pid
+
+# macOS
+.DS_Store
+
+# Editor
+*.swp
+.vscode/
