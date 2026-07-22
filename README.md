@@ -8,6 +8,8 @@ for Bambu Lab (0.4 mm nozzle, PLA, no supports).
 > **[open the Web Flasher »](https://medpex.github.io/display-case-gc9a01/)**
 > (Chrome or Edge, desktop).
 
+**📦 Download the model on [MakerWorld](https://makerworld.com/de/models/3082754-tischstander-fur-gc9a01-1-28-display-esp32-c3).**
+
 ![Wiring diagram](docs/wiring.png)
 
 ## Contents
