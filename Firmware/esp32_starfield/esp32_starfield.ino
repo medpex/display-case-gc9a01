@@ -1,8 +1,8 @@
 /*
  * WARP STARFIELD  -  ESP32-C3 Super Mini + GC9A01 (240x240 rund)
- * Flimmerfreies Warp-Feld (Vollbild-Canvas). Kein WLAN noetig.
+ * Flicker-free warp field (full-frame canvas). No WiFi needed.
  *
- * Verkabelung: SCK=4  MOSI=6  RST=5  DC=7  CS=10  VCC=3V3  GND=GND  (BLK=3V3)
+ * Wiring: SCK=4  MOSI=6  RST=5  DC=7  CS=10  VCC=3V3  GND=GND  (BLK=3V3)
  * Flash: arduino-cli compile --upload -p <port> \
  *   --fqbn "esp32:esp32:esp32c3:CDCOnBoot=cdc,FlashSize=4M" esp32_starfield
  */
@@ -22,7 +22,7 @@
 #define CY 120
 #define MAX_DEPTH 128.0f
 #define SPEED 1.9f
-#define SPAWN 10.0f   // Startradius im 3D-Raum
+#define SPAWN 10.0f   // spawn radius in 3D space
 
 Adafruit_GC9A01A tft(TFT_CS, TFT_DC, TFT_RST);
 GFXcanvas16 cv(240, 240);
@@ -31,7 +31,7 @@ struct Star { float x, y, z; };
 Star stars[NUM_STARS];
 uint32_t seed = 0x12345678;
 
-// deterministischer PRNG (kein Math.random-Aequivalent noetig)
+// deterministic PRNG
 float frnd() {
   seed ^= seed << 13; seed ^= seed >> 17; seed ^= seed << 5;
   return (seed & 0xFFFFFF) / (float)0xFFFFFF;
@@ -44,10 +44,10 @@ void respawn(Star &s) {
 }
 
 uint16_t shade(float z) {
-  float b = 1.0f - (z / MAX_DEPTH);       // nah = hell
+  float b = 1.0f - (z / MAX_DEPTH);       // near = bright
   if (b < 0) b = 0; if (b > 1) b = 1;
   uint8_t v = (uint8_t)(b * 255);
-  // leichter Blaustich in der Ferne
+  // slight blue tint in the distance
   uint8_t r = v, g = v, bl = (uint8_t)(v * 0.6f + 100 * (1 - b));
   return ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (bl >> 3);
 }
@@ -72,8 +72,8 @@ void loop() {
     if (x < 0 || x > 239 || y < 0 || y > 239) { respawn(s); continue; }
 
     uint16_t c = shade(s.z);
-    cv.drawLine(px, py, x, y, c);          // Warp-Strich
-    if (s.z < MAX_DEPTH * 0.4f) cv.drawPixel(x, y, 0xFFFF);  // heller Kopf nah
+    cv.drawLine(px, py, x, y, c);          // warp streak
+    if (s.z < MAX_DEPTH * 0.4f) cv.drawPixel(x, y, 0xFFFF);  // bright head when near
   }
   tft.drawRGBBitmap(0, 0, cv.getBuffer(), 240, 240);
 }

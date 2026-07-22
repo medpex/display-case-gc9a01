@@ -22,7 +22,10 @@ Display-Case-GC9A01/
 ├── STEP/CASE-FINAL.step          # parametric CAD (Fusion import)
 ├── Firmware/
 │   ├── esp32_hud/                # GC9A01 HUD (clock/weather/sun/date, WiFi portal)
-│   └── esp32_starfield/          # Warp starfield demo (no WiFi)
+│   ├── esp32_starfield/          # Warp starfield demo (no WiFi)
+│   ├── esp32_matrix/             # Matrix rain demo (no WiFi)
+│   ├── esp32_fire/               # demoscene fire demo (no WiFi)
+│   └── esp32_plasma/             # full-color plasma demo (no WiFi)
 ├── docs/                         # GitHub Pages web flasher + wiring diagram
 └── BOM.md                        # bill of materials
 ```
@@ -47,13 +50,16 @@ Two sketches are included. Two ways to flash:
 ### 1. Web flasher (easiest — no software)
 
 Open **<https://medpex.github.io/display-case-gc9a01/>** in Chrome or Edge on a
-desktop, plug the ESP32-C3 in via USB-C, and click **Flash HUD** or
-**Flash Starfield**. That's it.
+desktop, plug the ESP32-C3 in via USB-C, and click a flash button. That's it.
 
 - **GC9A01 HUD** — rotating info display: clock, weather, daylight/sun arc and date,
   with a short random animation show once per hour. WiFi and location are set up in
   the browser on first boot (see below). No cloud, no account, no telemetry.
-- **Warp Starfield** — flicker-free warp-speed animation, runs instantly, no WiFi.
+- **Demos** (no WiFi, no setup, run instantly):
+  - **Warp Starfield** — flicker-free warp-speed flight through the stars
+  - **Matrix Rain** — falling glyph columns with fading trails
+  - **Fire** — old-school demoscene fire simulation
+  - **Plasma** — full-color plasma waves cycling through the rainbow
 
 #### HUD first-time setup
 
@@ -79,10 +85,10 @@ arduino-cli compile --upload -p /dev/cu.usbmodemXXXX \
   --fqbn "esp32:esp32:esp32c3:CDCOnBoot=cdc,FlashSize=4M,PartitionScheme=huge_app" \
   Firmware/esp32_hud
 
-# Starfield — libs: "Adafruit GFX Library", "Adafruit GC9A01A"
+# Demos (starfield / matrix / fire / plasma) — libs: "Adafruit GFX Library", "Adafruit GC9A01A"
 arduino-cli compile --upload -p /dev/cu.usbmodemXXXX \
   --fqbn "esp32:esp32:esp32c3:CDCOnBoot=cdc,FlashSize=4M" \
-  Firmware/esp32_starfield
+  Firmware/esp32_starfield   # or esp32_matrix / esp32_fire / esp32_plasma
 ```
 
 > Default location can also be changed in `Firmware/esp32_hud/esp32_hud.ino`

@@ -52,9 +52,10 @@ Testdruck bestätigt.
 → Verkabelungs-Diagramm siehe Bilder.
 
 ### 💻 Firmware — im Browser flashen, keine Software nötig
-Zwei fertige Firmwares: das **GC9A01 HUD** (rotierend: Uhr · Wetter · Sonne · Datum
-+ stündliche Animations-Show) und eine **Warp-Starfield**-Demo. Direkt aus dem
-Browser flashen (Chrome/Edge, Desktop) — kein Arduino, kein Toolchain:
+Fünf fertige Firmwares: das **GC9A01 HUD** (rotierend: Uhr · Wetter · Sonne · Datum
++ stündliche Animations-Show) und vier Demos ohne WLAN/Setup — **Warp Starfield**,
+**Matrix Rain**, **Fire** und **Plasma**. Direkt aus dem Browser flashen
+(Chrome/Edge, Desktop) — kein Arduino, kein Toolchain:
 
 **👉 Web-Flasher: https://medpex.github.io/display-case-gc9a01/**
 

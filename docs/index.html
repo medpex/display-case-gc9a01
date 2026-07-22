@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Display-Case GC9A01 — Web Flasher</title>
-  <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js"></script>
+  <script type="module" src="https://unpkg.com/esp-web-tools@10.4.0/dist/web/install-button.js"></script>
   <style>
     :root {
       --bg: #0b0e14;
@@ -72,6 +72,27 @@
       <p>Flicker-free warp-speed starfield animation. Runs instantly, no WiFi, no setup.</p>
       <esp-web-install-button manifest="firmware/starfield/manifest.json">
         <button slot="activate">Flash Starfield</button>
+      </esp-web-install-button>
+    </div>
+    <div class="card">
+      <h3>💚 Matrix Rain</h3>
+      <p>Falling glyph columns with fading trails — the classic. No WiFi, no setup.</p>
+      <esp-web-install-button manifest="firmware/matrix/manifest.json">
+        <button slot="activate">Flash Matrix</button>
+      </esp-web-install-button>
+    </div>
+    <div class="card">
+      <h3>🔥 Fire</h3>
+      <p>Old-school demoscene fire simulation licking up the round display. No WiFi, no setup.</p>
+      <esp-web-install-button manifest="firmware/fire/manifest.json">
+        <button slot="activate">Flash Fire</button>
+      </esp-web-install-button>
+    </div>
+    <div class="card">
+      <h3>🌈 Plasma</h3>
+      <p>Full-color plasma waves cycling through the rainbow. No WiFi, no setup.</p>
+      <esp-web-install-button manifest="firmware/plasma/manifest.json">
+        <button slot="activate">Flash Plasma</button>
       </esp-web-install-button>
     </div>
   </div>
