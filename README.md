@@ -12,6 +12,15 @@ for Bambu Lab (0.4 mm nozzle, PLA, no supports).
 
 ![Wiring diagram](docs/wiring.png)
 
+## Housing variants
+
+Both housings use the same electronics, wiring and firmware (web flasher above).
+
+| | Variant | Folder |
+|---|---|---|
+| <img src="docs/img/cover-4x3.png" width="260"> | **Wedge stand** (original): 15° wedge, 58 × 52 × 66 mm | this folder (`STL/`, `3MF/`, `STEP/`) |
+| <img src="puck/docs/img/photos/photo-front-matrix.jpg" width="260"> | **Round puck**: ⌀64 mm puck, 15° tilt, wedge foot, lid with ESP32 snap sled | [`puck/`](puck/README.md) |
+
 ## Contents
 
 ```
@@ -28,6 +37,7 @@ Display-Case-GC9A01/
 │   ├── esp32_matrix/             # Matrix rain demo (no WiFi)
 │   ├── esp32_fire/               # demoscene fire demo (no WiFi)
 │   └── esp32_plasma/             # full-color plasma demo (no WiFi)
+├── puck/                         # round puck variant (own STL/3MF/STEP, Fusion source)
 ├── docs/                         # GitHub Pages web flasher + wiring diagram
 └── BOM.md                        # bill of materials
 ```
