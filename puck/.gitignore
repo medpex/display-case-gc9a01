@@ -1,0 +1,3 @@
+# Intermediate Fusion exports (regenerate with fusion/build_puck.py)
+/build_fusion/
+__pycache__/

@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 600" font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+  <defs>
+    <style>
+      .lbl   { font-size: 15px; fill: #1a1f2b; }
+      .pin   { font-size: 13px; font-weight: 600; fill: #1a1f2b; }
+      .gpio  { font-size: 13px; font-weight: 700; fill: #ffffff; }
+      .title { font-size: 22px; font-weight: 700; fill: #1a1f2b; }
+      .sub   { font-size: 13px; fill: #5b6472; }
+      .wire  { stroke-width: 4; fill: none; }
+      .pad   { rx: 4; }
+    </style>
+  </defs>
+
+  <rect width="920" height="600" fill="#f6f7f9"/>
+  <text x="40" y="46" class="title">GC9A01 &#8594; ESP32-C3 Super Mini</text>
+  <text x="40" y="68" class="sub">1.28" round TFT (240&#215;240, SPI) · BLK tied to 3V3 (backlight always on)</text>
+
+  <!-- ===== Display (left) ===== -->
+  <circle cx="185" cy="335" r="120" fill="#0b0e14" stroke="#232a39" stroke-width="6"/>
+  <text x="185" y="200" text-anchor="middle" class="sub">GC9A01 (back)</text>
+  <!-- FPC nub bottom -->
+  <rect x="160" y="452" width="50" height="26" rx="4" fill="#c9a24b"/>
+  <text x="185" y="470" text-anchor="middle" font-size="11" fill="#1a1f2b">FPC</text>
+
+  <!-- Display pin pads (right edge of display block) -->
+  <!-- order top->bottom: VCC GND SCL SDA RES DC CS BLK -->
+  <!-- y positions -->
+  <!-- pad group -->
+  <g>
+    <!-- VCC -->
+    <rect x="300" y="120" width="150" height="30" class="pad" fill="#ffffff" stroke="#cfd5df"/>
+    <text x="312" y="140" class="pin">VCC</text>
+    <!-- GND -->
+    <rect x="300" y="160" width="150" height="30" class="pad" fill="#ffffff" stroke="#cfd5df"/>
+    <text x="312" y="180" class="pin">GND</text>
+    <!-- SCL -->
+    <rect x="300" y="200" width="150" height="30" class="pad" fill="#ffffff" stroke="#cfd5df"/>
+    <text x="312" y="220" class="pin">SCL / SCK</text>
+    <!-- SDA -->
+    <rect x="300" y="240" width="150" height="30" class="pad" fill="#ffffff" stroke="#cfd5df"/>
+    <text x="312" y="260" class="pin">SDA / MOSI</text>
+    <!-- RES -->
+    <rect x="300" y="280" width="150" height="30" class="pad" fill="#ffffff" stroke="#cfd5df"/>
+    <text x="312" y="300" class="pin">RES / RST</text>
+    <!-- DC -->
+    <rect x="300" y="320" width="150" height="30" class="pad" fill="#ffffff" stroke="#cfd5df"/>
+    <text x="312" y="340" class="pin">DC</text>
+    <!-- CS -->
+    <rect x="300" y="360" width="150" height="30" class="pad" fill="#ffffff" stroke="#cfd5df"/>
+    <text x="312" y="380" class="pin">CS</text>
+    <!-- BLK -->
+    <rect x="300" y="400" width="150" height="30" class="pad" fill="#ffffff" stroke="#cfd5df"/>
+    <text x="312" y="420" class="pin">BLK</text>
+  </g>
+
+  <!-- ===== ESP32-C3 (right) ===== -->
+  <rect x="620" y="110" width="220" height="360" rx="12" fill="#0b0e14" stroke="#232a39" stroke-width="4"/>
+  <text x="730" y="80" text-anchor="middle" class="sub">ESP32-C3 Super Mini</text>
+  <rect x="700" y="92" width="60" height="16" rx="3" fill="#8b94a7"/>
+  <text x="730" y="103" text-anchor="middle" font-size="10" fill="#0b0e14">USB-C</text>
+
+  <!-- ESP pin pads (left edge of board) -->
+  <g>
+    <!-- 3V3 (row1) -->
+    <rect x="620" y="120" width="120" height="30" class="pad" fill="#e8503a"/>
+    <text x="632" y="140" class="gpio">3V3</text>
+    <!-- GND -->
+    <rect x="620" y="160" width="120" height="30" class="pad" fill="#3a4150"/>
+    <text x="632" y="180" class="gpio">GND</text>
+    <!-- GPIO4 -->
+    <rect x="620" y="200" width="120" height="30" class="pad" fill="#3a4150"/>
+    <text x="632" y="220" class="gpio">GPIO4</text>
+    <!-- GPIO6 -->
+    <rect x="620" y="240" width="120" height="30" class="pad" fill="#3a4150"/>
+    <text x="632" y="260" class="gpio">GPIO6</text>
+    <!-- GPIO5 -->
+    <rect x="620" y="280" width="120" height="30" class="pad" fill="#3a4150"/>
+    <text x="632" y="300" class="gpio">GPIO5</text>
+    <!-- GPIO7 -->
+    <rect x="620" y="320" width="120" height="30" class="pad" fill="#3a4150"/>
+    <text x="632" y="340" class="gpio">GPIO7</text>
+    <!-- GPIO10 -->
+    <rect x="620" y="360" width="120" height="30" class="pad" fill="#3a4150"/>
+    <text x="632" y="380" class="gpio">GPIO10</text>
+    <!-- 3V3 (row8, for BLK) -->
+    <rect x="620" y="400" width="120" height="30" class="pad" fill="#e8503a"/>
+    <text x="632" y="420" class="gpio">3V3</text>
+  </g>
+
+  <!-- ===== Wires ===== -->
+  <!-- VCC -> 3V3 red -->
+  <path class="wire" stroke="#e8503a" d="M450 135 C 535 135, 535 135, 620 135"/>
+  <!-- GND -> GND black -->
+  <path class="wire" stroke="#2b303a" d="M450 175 C 535 175, 535 175, 620 175"/>
+  <!-- SCL -> GPIO4 yellow -->
+  <path class="wire" stroke="#e0a800" d="M450 215 C 535 215, 535 215, 620 215"/>
+  <!-- SDA -> GPIO6 green -->
+  <path class="wire" stroke="#2e9e5b" d="M450 255 C 535 255, 535 255, 620 255"/>
+  <!-- RES -> GPIO5 orange -->
+  <path class="wire" stroke="#e8792b" d="M450 295 C 535 295, 535 295, 620 295"/>
+  <!-- DC -> GPIO7 blue -->
+  <path class="wire" stroke="#2f7fe0" d="M450 335 C 535 335, 535 335, 620 335"/>
+  <!-- CS -> GPIO10 purple -->
+  <path class="wire" stroke="#8a4fd0" d="M450 375 C 535 375, 535 375, 620 375"/>
+  <!-- BLK -> 3V3 red (dashed to show optional/backlight) -->
+  <path class="wire" stroke="#e8503a" stroke-dasharray="8 5" d="M450 415 C 535 415, 535 415, 620 415"/>
+
+  <!-- ===== Legend ===== -->
+  <text x="40" y="520" class="sub">Wire colors are a suggestion for clarity only — any color works.</text>
+  <text x="40" y="545" class="lbl">SPI bus: SCK=GPIO4 · MOSI=GPIO6 · RST=GPIO5 · DC=GPIO7 · CS=GPIO10</text>
+  <text x="40" y="568" class="lbl">Power: VCC/BLK &#8594; 3V3 · GND &#8594; GND</text>
+</svg>
